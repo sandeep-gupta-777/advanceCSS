@@ -3,6 +3,9 @@ $color-primary:#7ed56f;
 $color-primary-light:#55c57a;
 $color-primary-dark:#28b485;
 
+$color-black: black;
+$color-white: white;
+
 *, *::after, *::before {
   margin: 0;
   padding: 0;
@@ -23,7 +26,6 @@ body {
   font-weight: 400;
   line-height: 1.7;
   /*Spacing between two text lines*/
-  color: #777;
   padding: 3rem;
   font-size: 1rem;
   box-sizing: border-box;
@@ -52,47 +54,51 @@ body {
   /*these coordinates are with respect to current div content*/
   /*border:3px red solid*/
   /* border are not see at points where div is clipped */
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    /*top and bottom are wrt parent, transform % are wrt self*/
+  }
+
 }
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
 
-.header__logo {
-  height: 3.5rem;
-}
-
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  /*top and bottom are wrt parent, transform % are wrt self*/
-}
 
 .heading-primary {
-  color: white;
+  color: $color-white;
+  &--main {
+    display: block;
+    letter-spacing: 3rem;
+    font-weight: 400;
+    font-size: 8rem;
+    text-transform: uppercase;
+    animation: moveInLeft 1s;
+  }
+
+  &--sub {
+    display: block;
+    letter-spacing: 1.5rem;
+    text-transform: uppercase;
+    animation: moveInRight 1s;
+    margin-bottom: 4rem;
+  }
 }
 
-.heading-primary--main {
-  display: block;
-  letter-spacing: 3rem;
-  font-weight: 400;
-  font-size: 8rem;
-  text-transform: uppercase;
-  animation: moveInLeft 1s;
-}
 
-.heading-primary--sub {
-  display: block;
-  letter-spacing: 1.5rem;
-  text-transform: uppercase;
-  animation: moveInRight 1s;
-  margin-bottom: 4rem;
-}
 
 @keyframes moveInLeft {
   0% {
@@ -131,37 +137,45 @@ body {
   https://stackoverflow.com/questions/14883250/css-transform-doesnt-work-on-inline-elements
   */
   transition: all .1s ease-out .75s;
+
+  &--animated {
+    animation: moveInBottom .5s;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    /*shadow in x, y, blur of shadow, color of shadow*/
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 1rem 2rem rgba(40, 180, 133, 0.2);
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background: white;
+    /*padding: 15px 25px ;*/
+    border-radius: 40rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+
 }
 
-.btn--animated {
-  animation: moveInBottom .5s;
-}
 
-.btn:hover {
-  transform: translateY(-0.3rem);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-  /*shadow in x, y, blur of shadow, color of shadow*/
-}
-
-.btn:active {
-  transform: translateY(-0.1rem);
-  box-shadow: 0 1rem 2rem rgba(40, 180, 133, 0.2);
-}
-
-.btn::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  background: white;
-  /*padding: 15px 25px ;*/
-  border-radius: 40rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all 0.4s;
-}
 
 @keyframes moveInBottom {
   0% {
@@ -175,7 +189,3 @@ body {
   }
 }
 
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
