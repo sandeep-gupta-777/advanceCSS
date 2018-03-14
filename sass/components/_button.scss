@@ -1,0 +1,53 @@
+.btn {
+  text-decoration: none;
+  background: $color-white;
+  padding: 1.5rem 2.5rem;
+  border-radius: 40rem;
+  display: inline-block;
+  position: relative;
+  backface-visibility: hidden;
+  font-size: 1.5rem;
+  /*inline element is not transformation able
+  https://stackoverflow.com/questions/14883250/css-transform-doesnt-work-on-inline-elements
+  */
+  transition: all .1s ease-out .75s;
+}
+
+
+.btn:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  /*shadow in x, y, blur of shadow, color of shadow*/
+}
+
+.btn:active {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  background: $color-white;
+  /*padding: 15px 25px ;*/
+  border-radius: 40rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;/*transition: specified property will change in future...dont make the change immediately
+    make that change over given period of time
+  */
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn--animated {
+  animation: moveInBottom .5s ease-out .75s;
+  animation-fill-mode: backwards;/*apply the property of 0%, even before the animation starts, so we dont need to manually
+  give it initial value
+  */
+}

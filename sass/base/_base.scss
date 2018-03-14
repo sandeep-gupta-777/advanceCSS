@@ -1,0 +1,20 @@
+/*global definition will stay here*/
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /*this will be inherit from body*/
+}
+
+html {
+  /*font-size: 10px;*/ /*above is bad practice, since user wont be able to change the font size if they have some sight problems */
+  font-size: 62.5%; /*this is because default browser foont size if 16px. 62.5% of 16px = 10px*/
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.border1 {
+  border: .2rem solid $color-red;
+}
